@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Poet's Corner — a shared room for anonymous poetry." />
+    <title>Poet's Corner | Saiidi Poetry</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Italianno&family=Kalam:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="corner-page">
+    <main class="corner">
+      <header class="corner-header">
+        <a class="corner-brand" href="index.html">SAIIDI<span>POETRY</span></a>
+        <a class="corner-back" href="where.html">← CHOOSE ANOTHER ROOM</a>
+      </header>
+
+      <section class="corner-intro" aria-labelledby="corner-title">
+        <p class="corner-kicker">THE SHARED ROOM</p>
+        <h1 id="corner-title">Poet’s Corner</h1>
+        <p class="corner-lede">A quiet place to read, leave a line, and meet people through the words they choose to share.</p>
+      </section>
+
+      <section class="pen-name-card" aria-labelledby="pen-name-title">
+        <p class="pen-name-eyebrow">BEFORE YOU LEAVE A WORD HERE</p>
+        <h2 id="pen-name-title">Choose a pen name.</h2>
+        <p>Bring one of your own, or let the garden name you. Only this name will appear beside your work.</p>
+        <form class="pen-name-form" id="pen-name-form">
+          <label class="sr-only" for="pen-name">Your pen name</label>
+          <input id="pen-name" name="pen-name" maxlength="36" autocomplete="off" placeholder="a name for this room" required />
+          <button class="pen-generate" type="button" id="pen-generate">CREATE ONE FOR ME</button>
+          <button class="pen-submit" type="submit">ENTER THE CORNER</button>
+        </form>
+        <p class="pen-note" id="pen-note" aria-live="polite">You can change this later. No real name needed.</p>
+      </section>
+
+      <section class="corner-room" aria-labelledby="room-title">
+        <p class="room-welcome" id="room-welcome">WELCOME, FRIEND</p>
+        <h2 id="room-title">Stay a little.</h2>
+        <div class="corner-grid">
+          <article class="corner-feature theme-feature">
+            <p class="feature-label">THIS MONTH’S THREAD</p>
+            <h3>What are you learning to carry gently?</h3>
+            <p>Read poems gathered around this question, or keep it with you while you write.</p>
+            <a href="thread.html">READ THE THREAD →</a>
+          </article>
+          <article class="corner-feature poet-feature">
+            <p class="feature-label">POET OF THE MONTH</p>
+            <h3>Moonwater</h3>
+            <p>“I kept a small light in my pocket / for the days the sky forgot itself.”</p>
+            <a href="poet-of-the-month.html">MEET THE POET →</a>
+          </article>
+          <article class="corner-feature wall-feature" id="write">
+            <p class="feature-label">THE QUIET WALL</p>
+            <h3>Leave one line.</h3>
+            <p>Not a performance. Not a profile. Just one small thing you want somebody to find.</p>
+            <a href="#line">WRITE A LINE →</a>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const nameInput = document.querySelector('#pen-name');
+      const form = document.querySelector('#pen-name-form');
+      const note = document.querySelector('#pen-note');
+      const welcome = document.querySelector('#room-welcome');
+      const generatedNames = [
+        'Moss After Rain', 'Quiet Mercury', 'Sunday Ash', 'Softly, Fern',
+        'Blue Hour', 'A Small Wildflower', 'Honeyed Static', 'Cloud Keeper'
+      ];
+      const savedName = localStorage.getItem('saiidi-pen-name');
+
+      function greet(name) {
+        welcome.textContent = `WELCOME, ${name.toUpperCase()}`;
+      }
+
+      if (savedName) {
+        nameInput.value = savedName;
+        greet(savedName);
+      }
+
+      document.querySelector('#pen-generate').addEventListener('click', () => {
+        const name = generatedNames[Math.floor(Math.random() * generatedNames.length)];
+        nameInput.value = name;
+        note.textContent = `How does “${name}” feel? You can still make it your own.`;
+      });
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const name = nameInput.value.trim();
+        if (!name) return;
+        localStorage.setItem('saiidi-pen-name', name);
+        greet(name);
+        note.textContent = `You are known here as ${name}. Welcome in.`;
+        document.querySelector('.corner-room').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    </script>
+  </body>
+</html>

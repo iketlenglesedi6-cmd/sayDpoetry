@@ -1,0 +1,671 @@
+:root {
+  --leaf: #70955f;
+  --ink: #d9f2c9;
+  --lime: #8be34e;
+}
+
+* { box-sizing: border-box; }
+
+html, body { min-height: 100%; }
+
+body {
+  margin: 0;
+  min-width: 280px;
+  color: var(--ink);
+  background: var(--leaf);
+  font-family: "FF Providence Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+.hero {
+  background: var(--leaf);
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .11;
+  background-image: radial-gradient(ellipse at center, rgba(45, 84, 50, .5) 0 1px, transparent 1.6px);
+  background-size: 5px 5px;
+  pointer-events: none;
+}
+
+.botanical {
+  position: absolute;
+  z-index: -1;
+  width: clamp(430px, 48vw, 770px);
+  opacity: .64;
+}
+
+.botanical-left { top: -10%; left: -9%; transform: rotate(-19deg); }
+.botanical { display: block; height: auto; }
+
+.content {
+  position: absolute;
+  top: 49.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+h1 {
+  font: 400 clamp(5.1rem, 13vw, 12.5rem)/.78 "Anton", Impact, sans-serif;
+  letter-spacing: -.04em;
+  margin: 0;
+}
+
+h1 a { color: var(--lime); text-decoration: none; }
+h1 a:hover { color: #a5f46b; }
+h1 a:focus-visible { outline: 2px solid #f2ffe9; outline-offset: .12em; }
+h1 span { letter-spacing: 0; }
+
+.welcome {
+  margin: clamp(8rem, 19vh, 13rem) 0 0;
+  color: #d4f2ce;
+  font-family: "Kalam", cursive;
+  font-size: clamp(.7rem, 1.2vw, 1.05rem);
+  font-weight: 400;
+  letter-spacing: .02em;
+  line-height: 1.45;
+  white-space: nowrap;
+}
+
+.butterfly {
+  position: absolute;
+  width: clamp(72px, 8vw, 130px);
+  aspect-ratio: 360 / 506;
+  top: clamp(-6.5rem, -8vw, -4rem);
+  right: clamp(-1.5rem, -1vw, -.4rem);
+  transform-origin: 55% 68%;
+  animation: butterfly-flight 9s cubic-bezier(.45, .05, .55, .95) infinite;
+}
+
+.butterfly span {
+  position: absolute;
+  inset: 0;
+  background: url("butterfly.png") center / 100% 100% no-repeat;
+}
+
+.wing { z-index: 2; will-change: transform; }
+.wing-left {
+  clip-path: polygon(36% 39%, 49% 42%, 53% 66%, 47% 78%, 38% 75%, 32% 61%);
+  transform-origin: 48% 72%;
+  animation: left-wing 1.9s ease-in-out infinite;
+}
+.wing-right {
+  clip-path: polygon(46% 42%, 73% 45%, 83% 62%, 80% 80%, 57% 87%, 47% 76%);
+  transform-origin: 48% 72%;
+  animation: right-wing 1.9s ease-in-out infinite;
+}
+.butterfly-body {
+  z-index: 1;
+}
+
+@keyframes left-wing {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-7deg); }
+}
+
+@keyframes right-wing {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(7deg); }
+}
+
+@keyframes butterfly-flight {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-20deg); }
+  22% { transform: translate3d(-5px, -10px, 0) rotate(-17deg); }
+  48% { transform: translate3d(4px, -17px, 0) rotate(-21deg); }
+  73% { transform: translate3d(8px, -7px, 0) rotate(-18deg); }
+}
+
+.brand {
+  color: #f2ffe9;
+  font-size: clamp(.62rem, .9vw, .88rem);
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-decoration: none;
+}
+
+.brand { position: absolute; left: clamp(1.1rem, 2.4vw, 3.5rem); bottom: clamp(1.1rem, 2.3vw, 2.5rem); }
+.brand span { font-style: italic; margin-left: .12em; }
+
+@media (max-width: 600px) {
+  .botanical-left { top: -2%; left: -65%; width: 650px; }
+  .content { left: 55%; top: 47%; }
+  .welcome { margin-top: 7.5rem; }
+}
+
+/* Where shall we begin? page */
+.where-page { background: #789b64; }
+.where {
+  min-height: 100svh;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(.75rem, .9vw, 1.25rem);
+  background: #789b64;
+}
+.where::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .11;
+  background-image: radial-gradient(ellipse at center, rgba(45, 84, 50, .5) 0 1px, transparent 1.6px);
+  background-size: 5px 5px;
+  pointer-events: none;
+}
+.where-brand {
+  position: relative;
+  z-index: 1;
+  color: #f2ffe9;
+  font: 600 clamp(.62rem, .72vw, .78rem)/1 "FF Providence Sans", "Kalam", sans-serif;
+  letter-spacing: .15em;
+  text-decoration: none;
+}
+.where-brand span { margin-left: .12em; font-style: italic; }
+.where-heading {
+  position: absolute;
+  width: min(660px, 72vw);
+  height: auto;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow: visible;
+}
+.where-heading text {
+  fill: #073b1d;
+  font: 400 76px/1 "Anton", Impact, sans-serif;
+  letter-spacing: -.04em;
+}
+.where-choices {
+  position: absolute;
+  top: 53%;
+  left: 50%;
+  width: min(980px, 88vw);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(2rem, 6vw, 7rem);
+  transform: translate(-50%, -50%);
+}
+.where-card {
+  position: relative;
+  aspect-ratio: 1 / 1.03;
+  display: grid;
+  place-content: center;
+  color: #073b1d;
+  text-align: center;
+  text-decoration: none;
+  transition: transform .25s ease;
+  animation: choice-float 6s ease-in-out infinite;
+}
+.where-card:nth-child(2) { animation-delay: -2s; }
+.where-card:nth-child(3) { animation-delay: -4s; }
+.where-card:hover { animation-play-state: paused; transform: translateY(-9px) rotate(1.5deg); }
+.where-card:focus-visible { outline: 2px solid #efffdc; outline-offset: .55rem; }
+.card-shape { position: absolute; inset: 0; width: 100%; height: 100%; fill: #c1dc98; }
+.where-card span { position: relative; z-index: 1; display: block; }
+.card-script { margin-bottom: -.2em; font: 400 clamp(2.9rem, 5.1vw, 5.7rem)/.7 "Italianno", cursive; }
+.card-serif { font: 500 clamp(1.65rem, 2.6vw, 3rem)/.9 "Bodoni Moda", Georgia, serif; letter-spacing: -.06em; }
+
+.gateway-overlay {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  background: rgba(39, 68, 43, .26);
+  backdrop-filter: blur(15px) saturate(.75);
+  -webkit-backdrop-filter: blur(15px) saturate(.75);
+  transition: opacity .45s ease, visibility .45s ease;
+}
+.gateway-overlay:target { visibility: visible; opacity: 1; pointer-events: auto; }
+.gateway-panel {
+  width: min(620px, 100%);
+  padding: clamp(2.2rem, 5vw, 5rem);
+  border: 1px solid rgba(233, 255, 214, .38);
+  background: rgba(111, 147, 89, .88);
+  box-shadow: 0 1.5rem 4rem rgba(11, 45, 22, .18);
+  color: #efffdc;
+  text-align: center;
+  transform: translateY(18px) scale(.98);
+  transition: transform .45s cubic-bezier(.2, .8, .2, 1);
+}
+.gateway-overlay:target .gateway-panel { transform: translateY(0) scale(1); }
+.gateway-kicker { margin: 0 0 1.2rem; color: #bce98d; font: 400 clamp(1.4rem, 2.7vw, 2.7rem)/1 "Anton", Impact, sans-serif; letter-spacing: .02em; }
+.gateway-panel h2 { margin: 0; color: #f4ffe9; font: 400 clamp(2.1rem, 4.5vw, 4.4rem)/.98 "Italianno", cursive; }
+.gateway-panel > p:not(.gateway-kicker) { max-width: 35rem; margin: 1.5rem auto 2rem; color: #e8f8d9; font: 400 clamp(.9rem, 1.25vw, 1.15rem)/1.65 "Kalam", cursive; }
+.gateway-enter {
+  display: inline-block;
+  padding: .8rem 1.55rem;
+  border: 1px solid #e9ffda;
+  color: #f7ffed;
+  font: 400 .95rem/1 "Kalam", cursive;
+  letter-spacing: .12em;
+  text-decoration: none;
+  transition: background .2s ease, color .2s ease;
+}
+.gateway-enter:hover { color: #315c35; background: #e9ffda; }
+.gateway-close { position: absolute; top: 1.2rem; right: 1.6rem; color: #efffdc; font: 300 2.2rem/1 Arial, sans-serif; text-decoration: none; }
+
+@keyframes choice-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(.8deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .where-card { animation: none; }
+}
+
+@media (max-width: 700px) {
+  .where-heading { top: 10%; width: 92vw; }
+  .where-heading text { font-size: 76px; }
+  .where-choices { top: 55%; grid-template-columns: 1fr; width: min(260px, 70vw); gap: .8rem; }
+  .where-card { aspect-ratio: 1.25 / 1; }
+}
+
+/* Monthly Thread */
+.thread-page { background: #789b64; }
+.thread { min-height: 100svh; padding: clamp(1rem, 2.5vw, 3rem); color: #123f22; background: #789b64; }
+.thread-header { display: flex; justify-content: space-between; align-items: center; }
+.thread-brand, .thread-back { color: #efffdf; font: 600 clamp(.65rem, .78vw, .82rem)/1 "FF Providence Sans", "Kalam", sans-serif; letter-spacing: .13em; text-decoration: none; }
+.thread-brand span { margin-left: .12em; font-style: italic; }
+.thread-back { color: #d5eebd; font-size: clamp(.56rem, .65vw, .72rem); }
+.thread-intro { max-width: 850px; margin: clamp(4.5rem, 11vh, 9rem) auto clamp(3rem, 8vh, 7rem); text-align: center; }
+.thread-intro > p:first-child, .leave-kicker { margin: 0; color: #dff5bf; font: 400 clamp(.65rem, .85vw, .88rem)/1 "Kalam", cursive; letter-spacing: .13em; }
+.thread-intro h1 { margin: .9rem 0 1rem; color: #bce98d; font: 400 clamp(3.5rem, 7.7vw, 8rem)/.82 "Anton", Impact, sans-serif; letter-spacing: -.05em; }
+.thread-invitation { max-width: 34rem; margin: 0 auto; color: #efffdf; font: 400 clamp(1rem, 1.35vw, 1.25rem)/1.55 "Kalam", cursive; }
+.thread-lines { width: min(1000px, 100%); margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); align-items: start; gap: clamp(1rem, 3.2vw, 3.5rem); }
+.thread-line { min-height: 250px; padding: clamp(1.5rem, 2.7vw, 2.6rem); display: flex; flex-direction: column; justify-content: space-between; border: 1px solid rgba(236, 255, 217, .28); background: rgba(224, 246, 196, .13); }
+.thread-line:nth-child(1) { transform: translateY(2.5rem) rotate(-1deg); }
+.thread-line:nth-child(3) { transform: translateY(1.4rem) rotate(1deg); }
+.thread-line p { margin: 0; color: #f1ffe4; font: 400 clamp(1.2rem, 1.8vw, 1.9rem)/1.38 "Bodoni Moda", Georgia, serif; }
+.thread-line footer { margin-top: 2rem; color: #c7eaa2; font: 400 .92rem/1 "Kalam", cursive; }
+.thread-line-featured { min-height: 315px; background: #bdd994; transform: translateY(-1.5rem) !important; }
+.thread-line-featured p, .thread-line-featured footer { color: #143f22; }
+.leave-line { width: min(660px, 100%); margin: clamp(6rem, 14vh, 12rem) auto 3rem; text-align: center; }
+.leave-line h2 { margin: .7rem 0 1.5rem; color: #efffdf; font: 400 clamp(3rem, 5vw, 5.2rem)/.85 "Italianno", cursive; }
+.leave-line textarea { width: 100%; min-height: 130px; padding: 1.1rem; border: 1px solid #dff5bf; resize: vertical; outline: none; color: #143f22; background: #f3ffea; font: 400 1rem/1.5 "Kalam", cursive; }
+.leave-line textarea:focus { box-shadow: 0 0 0 3px rgba(218, 248, 183, .35); }
+.leave-line button { margin-top: 1rem; padding: .9rem 1.35rem; border: 1px solid #dff5bf; color: #174528; background: #c3e99a; font: 400 .75rem/1 "Kalam", cursive; letter-spacing: .1em; cursor: pointer; }
+.thread-form-note { color: #d5eebd; font: 400 .82rem/1.5 "Kalam", cursive; }
+.thread-line-new { margin-top: 2.5rem; min-height: 190px; text-align: left; transform: none !important; }
+
+@media (max-width: 700px) {
+  .thread-header { align-items: flex-start; gap: 1rem; }
+  .thread-back { max-width: 9rem; line-height: 1.35; text-align: right; }
+  .thread-lines { grid-template-columns: 1fr; }
+  .thread-line, .thread-line-featured { min-height: 220px; transform: none !important; }
+}
+
+/* Poet of the Month spotlight */
+.spotlight-page { margin: 0; background: #789b64; color: #123f22; }
+.spotlight { min-height: 100svh; }
+.spotlight-hero {
+  min-height: 100svh;
+  position: relative;
+  display: grid;
+  place-items: end center;
+  overflow: hidden;
+  background: #799b65;
+}
+.spotlight-back {
+  position: absolute;
+  z-index: 2;
+  top: clamp(1rem, 2vw, 2rem);
+  left: clamp(1rem, 2vw, 2rem);
+  color: #f0ffe3;
+  font: 400 clamp(.65rem, .8vw, .82rem)/1 "Kalam", cursive;
+  letter-spacing: .1em;
+  text-decoration: none;
+}
+.spotlight-title {
+  position: absolute;
+  z-index: 3;
+  top: clamp(1.2rem, 3.5vw, 3.5rem);
+  left: 50%;
+  width: 100%;
+  margin: 0;
+  color: #8be34e;
+  font: 400 clamp(3.15rem, 7vw, 7.5rem)/.78 "Anton", Impact, sans-serif;
+  letter-spacing: -.045em;
+  text-align: center;
+  transform: translateX(-50%);
+}
+.spotlight-return {
+  position: absolute;
+  z-index: 4;
+  top: clamp(1rem, 1.6vw, 1.6rem);
+  left: clamp(1rem, 1.6vw, 1.6rem);
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  color: #efffdf;
+  font: 400 clamp(.62rem, .75vw, .78rem)/1 "Kalam", cursive;
+  letter-spacing: .1em;
+  text-decoration: none;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.spotlight-return:hover { opacity: .72; transform: translateX(-3px); }
+.spotlight-return:focus-visible { outline: 2px solid #efffdf; outline-offset: .35rem; }
+.spotlight-card {
+  z-index: 1;
+  width: min(260px, 25vw);
+  min-height: min(82svh, 520px);
+  margin-bottom: clamp(1.25rem, 2.2vh, 2.2rem);
+  padding: 0;
+  border: 0;
+  color: #0d401f;
+  background: transparent;
+  cursor: pointer;
+  perspective: 1100px;
+  text-align: center;
+}
+.spotlight-card-inner { position: relative; display: block; width: 100%; min-height: inherit; transform-style: preserve-3d; transition: transform .8s cubic-bezier(.2, .7, .2, 1); }
+.spotlight-card.is-flipped .spotlight-card-inner { transform: rotateY(180deg); }
+.spotlight-card-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.2rem, 2vw, 2rem);
+  background: #bdd994;
+  border-radius: 0 0 1.8rem 1.8rem;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.spotlight-card-back { transform: rotateY(180deg); background: #cce8a6; }
+.card-face-label, .card-turn { font: 400 clamp(.6rem, .72vw, .75rem)/1 "Kalam", cursive; letter-spacing: .12em; }
+.card-face-label { position: absolute; top: clamp(1.1rem, 2vw, 1.8rem); }
+.card-turn { position: absolute; bottom: clamp(1.1rem, 2vw, 1.8rem); }
+.card-poem { font: 400 clamp(1.65rem, 2.55vw, 2.7rem)/1.28 "Bodoni Moda", Georgia, serif; }
+.card-poet { margin: .6rem 0 1.2rem; font: 400 clamp(3rem, 5vw, 5rem)/.8 "Italianno", cursive; }
+.card-note { max-width: 12rem; font: 400 clamp(.82rem, 1vw, 1rem)/1.55 "Kalam", cursive; }
+.spotlight-card:focus-visible { outline: 2px solid #f4ffe8; outline-offset: .5rem; }
+.spotlight-bloom {
+  position: absolute;
+  width: clamp(105px, 13vw, 205px);
+  aspect-ratio: 1;
+  opacity: .8;
+  z-index: 2;
+}
+.spotlight-bloom g { fill: #608853; }
+.bloom-top-left { top: 11%; left: calc(50% - min(15vw, 235px)); transform: rotate(-18deg); }
+.bloom-top-right { top: 8%; right: auto; left: calc(50% + min(2vw, 28px)); transform: rotate(22deg); }
+.bloom-bottom { bottom: -8%; left: calc(50% - min(15vw, 235px)); transform: rotate(47deg); }
+.spotlight-story { width: min(940px, calc(100% - 3rem)); margin: 0 auto; padding: clamp(4rem, 9vw, 9rem) 0; }
+.spotlight-story header { max-width: 620px; margin: 0 auto clamp(3rem, 6vw, 6rem); text-align: center; }
+.story-kicker, .story-label { margin: 0; color: #648c56; font: 400 clamp(.65rem, .8vw, .82rem)/1 "Kalam", cursive; letter-spacing: .13em; }
+.spotlight-story h2 { margin: 1rem 0 0; font: 400 clamp(3rem, 6vw, 6.5rem)/.85 "Italianno", cursive; }
+.story-columns { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem, 10vw, 10rem); }
+.story-columns section { border-top: 1px solid #b8d29c; padding-top: 1.35rem; }
+.poem-copy { font: 400 clamp(1.6rem, 2.8vw, 2.8rem)/1.25 "Bodoni Moda", Georgia, serif; }
+.story-columns section > p:not(.story-label) { color: #285331; font: 400 clamp(.95rem, 1.3vw, 1.15rem)/1.75 "Kalam", cursive; }
+.story-note { color: #638957 !important; font-size: .9em !important; }
+
+@media (max-width: 650px) {
+  .spotlight-hero { min-height: 100svh; }
+  .spotlight-title { top: 5.5rem; font-size: clamp(2.6rem, 12vw, 4.2rem); }
+  .spotlight-card { width: 220px; min-height: min(75svh, 500px); }
+  .bloom-top-left { left: -5%; }
+  .bloom-top-right { right: -6%; }
+  .bloom-bottom { left: -8%; }
+  .story-columns { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+
+/* Poet's Corner */
+.corner-page { background: #789b64; }
+.corner {
+  min-height: 100svh;
+  padding: clamp(1rem, 2.5vw, 3rem);
+  color: #083c1e;
+  background: #789b64;
+}
+.corner-header { display: flex; align-items: center; justify-content: space-between; }
+.corner-brand, .corner-back {
+  color: #f1ffe5;
+  font: 600 clamp(.65rem, .78vw, .82rem)/1 "FF Providence Sans", "Kalam", sans-serif;
+  letter-spacing: .13em;
+  text-decoration: none;
+}
+.corner-brand span { margin-left: .12em; font-style: italic; }
+.corner-back { color: #d5eebd; font-size: clamp(.56rem, .65vw, .72rem); }
+.corner-intro { max-width: 760px; margin: clamp(4rem, 11vh, 8rem) auto 0; text-align: center; }
+.corner-kicker, .pen-name-eyebrow, .feature-label { margin: 0; color: #dff5bf; font: 400 clamp(.62rem, .85vw, .88rem)/1 "Kalam", cursive; letter-spacing: .13em; }
+.corner-intro h1 { margin: .3rem 0 .7rem; color: #bce98d; font: 400 clamp(5rem, 11vw, 11rem)/.78 "Anton", Impact, sans-serif; letter-spacing: -.045em; }
+.corner-lede { max-width: 37rem; margin: 0 auto; color: #edf9df; font: 400 clamp(1rem, 1.45vw, 1.32rem)/1.5 "Kalam", cursive; }
+.pen-name-card {
+  width: min(620px, 100%);
+  margin: clamp(2.5rem, 6vh, 5rem) auto;
+  padding: clamp(1.7rem, 4vw, 3.7rem);
+  border: 1px solid rgba(236, 255, 217, .42);
+  background: rgba(187, 220, 145, .18);
+  color: #efffdf;
+  text-align: center;
+}
+.pen-name-card h2 { margin: .6rem 0; font: 400 clamp(2.7rem, 5.2vw, 5.2rem)/.9 "Italianno", cursive; }
+.pen-name-card > p:not(.pen-name-eyebrow):not(.pen-note) { margin: 0 auto 1.5rem; max-width: 30rem; font: 400 clamp(.88rem, 1.2vw, 1.12rem)/1.6 "Kalam", cursive; }
+.pen-name-form { display: grid; grid-template-columns: 1fr auto; gap: .7rem; max-width: 420px; margin: 0 auto; }
+.pen-name-form input { min-width: 0; padding: .85rem 1rem; border: 1px solid #e7fad0; outline: none; color: #123f22; background: #f3ffea; font: 400 1rem "Kalam", cursive; }
+.pen-name-form input:focus { box-shadow: 0 0 0 3px rgba(218, 248, 183, .35); }
+.pen-generate, .pen-submit { border: 1px solid #e7fad0; padding: .75rem 1rem; color: #efffdf; background: transparent; font: 400 .7rem/1 "Kalam", cursive; letter-spacing: .08em; cursor: pointer; }
+.pen-generate { white-space: nowrap; }
+.pen-submit { grid-column: 1 / -1; background: #c3e99a; color: #174528; }
+.pen-note { min-height: 1.5em; margin: 1rem 0 0; color: #dcefc7; font: 400 .8rem/1.45 "Kalam", cursive; }
+.corner-room { width: min(1100px, 100%); margin: clamp(5rem, 12vh, 10rem) auto 2rem; padding-bottom: 4rem; text-align: center; }
+.room-welcome { margin: 0; color: #dff5bf; font: 400 .78rem/1 "Kalam", cursive; letter-spacing: .15em; }
+.corner-room > h2 { margin: .35rem 0 2.5rem; color: #ecfbdc; font: 400 clamp(3.5rem, 6vw, 6rem)/.8 "Italianno", cursive; }
+.corner-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 2.5vw, 2.5rem); text-align: left; }
+.corner-feature { min-height: 280px; padding: clamp(1.5rem, 2.8vw, 2.6rem); display: flex; flex-direction: column; align-items: flex-start; border: 1px solid rgba(233, 255, 214, .28); background: rgba(238, 255, 218, .12); }
+.corner-feature:nth-child(2) { transform: translateY(1.8rem); }
+.corner-feature h3 { margin: 1.2rem 0 .8rem; color: #d0edaa; font: 400 clamp(2.25rem, 3.2vw, 3.35rem)/.88 "Italianno", cursive; }
+.corner-feature p:not(.feature-label) { margin: 0; color: #eefae1; font: 400 clamp(.86rem, 1.1vw, 1rem)/1.55 "Kalam", cursive; }
+.corner-feature a { margin-top: auto; padding-top: 1.5rem; color: #d5f5b4; font: 400 .76rem/1 "Kalam", cursive; letter-spacing: .08em; text-decoration: none; }
+.corner-feature a:hover { color: #fff; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+@media (max-width: 700px) {
+  .corner-header { align-items: flex-start; gap: 1rem; }
+  .corner-back { max-width: 9rem; text-align: right; line-height: 1.35; }
+  .corner-intro { margin-top: 4rem; }
+  .pen-name-form { grid-template-columns: 1fr; }
+  .pen-generate { grid-row: 2; }
+  .corner-grid { grid-template-columns: 1fr; }
+  .corner-feature:nth-child(2) { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .butterfly, .wing, .linger-butterfly { animation: none; }
+}
+
+/* Linger page */
+.linger-page { background: #7b9d66; }
+
+.linger {
+  min-height: 100svh;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding: clamp(.75rem, .9vw, 1.25rem);
+  color: #0f421f;
+  background: #7b9d66;
+}
+
+.linger::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .11;
+  background-image: radial-gradient(ellipse at center, rgba(45, 84, 50, .5) 0 1px, transparent 1.6px);
+  background-size: 5px 5px;
+  pointer-events: none;
+}
+
+.linger > * { z-index: 1; }
+
+.linger-brand, .linger-love {
+  color: #f2ffe9;
+  font-family: "FF Providence Sans", "Kalam", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(.62rem, .72vw, .78rem);
+  font-weight: 600;
+  letter-spacing: .15em;
+}
+
+.linger-brand { text-decoration: none; }
+.linger-brand span { font-style: italic; margin-left: .12em; }
+
+.linger-content {
+  position: absolute;
+  width: min(700px, calc(100% - 2rem));
+  top: 61%;
+  left: 53%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.linger-heading { position: relative; }
+.linger-heading h1 {
+  margin: 0;
+  color: #8be34e;
+  font: 400 clamp(4.7rem, 10.5vw, 10rem)/.75 "Anton", Impact, sans-serif;
+  letter-spacing: -.045em;
+  text-align: center;
+}
+.linger-heading p {
+  position: absolute;
+  left: calc(50% + clamp(7rem, 7.4vw, 8rem));
+  bottom: .2em;
+  margin: 0;
+  color: #e6ffd9;
+  font: 400 clamp(.65rem, 1.1vw, 1rem)/1.2 "Kalam", cursive;
+  white-space: nowrap;
+}
+
+.linger-butterfly {
+  position: absolute;
+  width: clamp(66px, 6.6vw, 102px);
+  aspect-ratio: 360 / 506;
+  pointer-events: none;
+}
+
+.linger-butterfly span {
+  position: absolute;
+  inset: 0;
+  background: url("butterfly.png") center / 100% 100% no-repeat;
+}
+
+.butterfly-base { z-index: 1; }
+.linger-wing { z-index: 2; transform-origin: 48% 72%; }
+.linger-wing-left {
+  clip-path: polygon(34% 38%, 53% 40%, 56% 69%, 47% 80%, 35% 76%, 30% 59%);
+  animation: linger-left-wing 1.55s ease-in-out infinite;
+}
+.linger-wing-right {
+  clip-path: polygon(45% 40%, 76% 43%, 85% 62%, 80% 82%, 56% 88%, 45% 76%);
+  animation: linger-right-wing 1.55s ease-in-out infinite;
+}
+
+@keyframes linger-left-wing {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-5deg); }
+}
+
+@keyframes linger-right-wing {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(5deg); }
+}
+
+.butterfly-main {
+  top: clamp(-7.6rem, -8.5vw, -5.5rem);
+  left: 55%;
+  animation: linger-butterfly-flight 24s cubic-bezier(.42, 0, .28, 1) infinite;
+}
+
+@keyframes linger-butterfly-flight {
+  0% { transform: translate3d(0, 0, 0) rotate(-15deg); }
+  16% { transform: translate3d(24vw, -23vh, 0) rotate(8deg); }
+  35% { transform: translate3d(42vw, 5vh, 0) rotate(12deg); }
+  55% { transform: translate3d(14vw, 32vh, 0) rotate(-6deg); }
+  74% { transform: translate3d(-36vw, 20vh, 0) rotate(-13deg); }
+  90% { transform: translate3d(-41vw, -16vh, 0) rotate(-9deg); }
+  100% { transform: translate3d(0, 0, 0) rotate(-15deg); }
+}
+
+.butterfly-companion { width: clamp(42px, 3.8vw, 64px); opacity: .9; }
+.companion-one {
+  top: 13%; left: 13%;
+  animation: companion-one-flight 13s ease-in-out infinite;
+}
+.companion-two {
+  right: 10%; bottom: 14%;
+  animation: companion-two-flight 16s ease-in-out infinite;
+}
+@keyframes companion-one-flight {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(18deg); }
+  50% { transform: translate3d(14vw, 10vh, 0) rotate(4deg); }
+}
+@keyframes companion-two-flight {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-28deg); }
+  50% { transform: translate3d(-16vw, -14vh, 0) rotate(-8deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .linger-butterfly, .linger-wing { animation: none; }
+}
+
+.linger-copy { margin-top: clamp(2rem, 4vw, 4rem); }
+.linger-copy p {
+  margin: .55em 0;
+  font: 700 clamp(.7rem, 1vw, 1rem)/1.5 "Kalam", cursive;
+  letter-spacing: .035em;
+}
+.linger-copy .exist {
+  margin-top: .85em;
+  color: #8be34e;
+  font: 400 clamp(1.8rem, 2.9vw, 3rem)/1 "Anton", Impact, sans-serif;
+  letter-spacing: -.04em;
+}
+
+.linger-love { position: absolute; left: clamp(1.25rem, 2.5vw, 2.8rem); bottom: clamp(1.25rem, 5.8vw, 6rem); }
+
+.clover-link {
+  --clover: #c5e49d;
+  position: absolute;
+  right: clamp(1.5rem, 8.5vw, 10rem);
+  bottom: clamp(1.25rem, 7.2vw, 7.4rem);
+  width: clamp(74px, 6.4vw, 100px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  color: #f7ffec;
+  font: 400 clamp(.65rem, 1vw, .92rem)/1 "Kalam", cursive;
+  letter-spacing: .08em;
+  text-decoration: none;
+  isolation: isolate;
+  transition: transform .25s ease;
+}
+.clover-graphic {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.clover-link span { position: relative; z-index: 1; }
+.clover-link:hover { transform: translateY(-5px) rotate(4deg); }
+.clover-link:focus-visible { outline: 2px solid #f7ffec; outline-offset: .4rem; }
+
+@media (max-width: 600px) {
+  .linger-content { left: 50%; top: 54%; }
+  .linger-heading p { position: static; margin-top: .8rem; white-space: normal; }
+  .linger-butterfly { left: 35%; }
+  .linger-copy { margin-top: 2.7rem; }
+  .clover-link { right: 1.5rem; bottom: 2.5rem; }
+}

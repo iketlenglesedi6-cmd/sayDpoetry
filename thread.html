@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="This month's shared poetry thread at Saiidi Poetry." />
+    <title>The Thread | Saiidi Poetry</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Italianno&family=Kalam:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="thread-page">
+    <main class="thread">
+      <header class="thread-header">
+        <a class="thread-brand" href="index.html">SAIIDI<span>POETRY</span></a>
+        <a class="thread-back" href="poets-corner.html">← POET’S CORNER</a>
+      </header>
+
+      <section class="thread-intro" aria-labelledby="thread-title">
+        <p>THIS MONTH’S THREAD</p>
+        <h1 id="thread-title">What are you learning<br />to carry gently?</h1>
+        <p class="thread-invitation">Read what others have left here. If a line finds you, leave one of your own.</p>
+      </section>
+
+      <section class="thread-lines" aria-label="Poems in this month's thread">
+        <article class="thread-line">
+          <p>i am learning that survival<br />does not always sound<br />like a battle cry.</p>
+          <footer>— <span>River Glass</span></footer>
+        </article>
+        <article class="thread-line thread-line-featured">
+          <p>some days i carry myself<br />like a cup filled too close<br />to the edge.<br /><br />still, i do not spill.</p>
+          <footer>— <span>Moonwater</span></footer>
+        </article>
+        <article class="thread-line">
+          <p>the softest thing i own<br />is the way i have begun<br />to forgive my own becoming.</p>
+          <footer>— <span>Sunday Ash</span></footer>
+        </article>
+      </section>
+
+      <section class="leave-line" aria-labelledby="leave-line-title">
+        <p class="leave-kicker" id="viewer-name">A LINE FROM YOU</p>
+        <h2 id="leave-line-title">Leave a small thing here.</h2>
+        <form id="thread-form">
+          <label class="sr-only" for="thread-entry">Your line for the thread</label>
+          <textarea id="thread-entry" maxlength="280" placeholder="write without having to explain it"></textarea>
+          <button type="submit">LEAVE THIS LINE</button>
+        </form>
+        <p class="thread-form-note" id="thread-form-note">Your pen name is the only name shown.</p>
+        <article class="thread-line thread-line-new" id="new-line" hidden>
+          <p id="new-line-copy"></p>
+          <footer>— <span id="new-line-name"></span></footer>
+        </article>
+      </section>
+    </main>
+    <script>
+      const penName = localStorage.getItem('saiidi-pen-name') || 'A Quiet Guest';
+      const viewerName = document.querySelector('#viewer-name');
+      const form = document.querySelector('#thread-form');
+      const entry = document.querySelector('#thread-entry');
+      const newLine = document.querySelector('#new-line');
+      const note = document.querySelector('#thread-form-note');
+
+      viewerName.textContent = `A LINE FROM ${penName.toUpperCase()}`;
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const text = entry.value.trim();
+        if (!text) return;
+        document.querySelector('#new-line-copy').textContent = text;
+        document.querySelector('#new-line-name').textContent = penName;
+        newLine.hidden = false;
+        note.textContent = 'Your line is resting here for now.';
+        entry.value = '';
+        newLine.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    </script>
+  </body>
+</html>
